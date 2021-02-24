@@ -1,0 +1,9 @@
+1-open Windows PowerShell
+2-remove-item alias:curl
+3-pip3 install curl
+4-curl -X POST 'https://iam.cloud.ibm.com/oidc/token' -H 'Content-Type: application/x-www-form-urlencoded' -d 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=<apikey>'
+
+
+
+
+uItfOVssv04bdnr4TnCRlegiIklPnSD7rEvV8oVTjG3P

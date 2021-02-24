@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <title>AutoAI heart failure prediction</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+
+<body style="background-color: #FFF8DC">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Build-A-thon</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--
+
+  <div class="topnav" id="myTopnav">
+    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+    <a href="https://github.com/IBM/predict-insurance-charges-with-ai"><i class="fa fa-info-circle"></i> About</a>
+  </div>
+-->
+  <center>
+    <div style="app-header">
+      <h2>Heart failure prediction</h2>
+      <p>Estimation by IBM Watson Machine Learning and AutoAI.</p>
+      <p>Fill out the form to see an estimate.</p>
+    </div>
+  </center>
+
+  <form class="text-center" style="border-style: solid; color: #254117; margin-bottom:10px" method="POST" action="/predict">
+    <table width="100%">
+
+    <!--  heart_beat = IntegerField('AVGHEARTBEATSPERMIN')
+    papi = IntegerField('PALPITATIONSPERDAY')
+    chol = IntegerField('CHOLESTEROL')
+    bmi = IntegerField("BMI")
+    age = IntegerField("AGE")
+    sex = IntegerField("SEX")
+    family = StringField("FAMILYHISTORY")
+    smoker = StringField("SMOKERLAST5YRS")
+    exercise = IntegerField("EXERCISEMINPERWEEK")  -->
+      <tbody>
+          <tr>
+            <td>
+           <!--   <div class="form-field">{{ form.heartbeat.label }} {{ form.heartbeat }}</div> -->
+              <div class="form-field">Heart beat: {{ form.heartbeat }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+               <!-- <div class="form-field ">{{ form.palpitation.label }} {{ form.palpitation }}</div> -->
+                 <div class="form-field ">palpitations per day: {{ form.palpitation }}</div>
+                <!-- <div class="form-field ">{{ form.sex.label }} {{ form.sex }}</div>
+                <select id="equalification" class="">
+                  <option id="selectHeader">--------- Select Gender --------------</option>
+                  <option value="male">{{form.sex.value}}</option>
+                  <option value="female">{{form.sex.value}}</option>
+                </select> -->
+            </td>
+          </tr>
+          <tr>
+            <td>
+             <!-- <div class="form-field ">{{ form.chol.label }} {{ form.chol }}</div> -->
+              <div class="form-field ">Cholesterol: {{ form.chol }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!--<div class="form-field ">{{ form.age.label }} {{ form.age }}</div> -->
+              <div class="form-field ">Age: {{ form.age }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <!--  <div class="form-field ">{{ form.sex.label }}(Female=F;Male=M) {{ form.sex }}</div>  -->
+              <div class="form-field ">sex(Female=F;Male=M) {{ form.sex }}</div> 
+              <!--  <select id="equalification" class="">
+                  <option id="selectHeader">--------- Select Gender --------------</option>
+                  <option value="M">Male{{ form.sex.value }}</option>
+                  <option value="F">Female{{ form.sex.value }}</option>
+                </select>-->
+
+
+            <!--  <div class="form-field ">{{ form.sex.label }} {{ form.sex }}</div>-->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!--<div class="form-field ">{{ form.family.label }}(Yes=Y;NO=N) {{ form.family }}</div>-->
+               <div class="form-field ">family history(Yes=Y;NO=N) {{ form.family }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!--<div class="form-field ">{{ form.smoker.label }}(Yes=Y;NO=N) {{ form.smoker }}</div> -->
+              <div class="form-field ">Smoker in the last 5 years(Yes=Y;NO=N) {{ form.smoker }}</div>
+
+             <!-- <div class="form-field ">{{ form.smoker.label }} {{ form.smoker }}</div> 
+                <select id="equalification" class="">
+                  <option id="selectHeader">--------- Select Gender --------------</option>
+                  <option value="Y">YES{{ form.smoker.value }}</option>
+                  <option value="N">NO{{ form.smoker.value }}</option>
+                </select>-->
+                <script>
+                //  form.smoker="Y";
+
+
+
+                </script>
+
+
+
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+             <!-- <div class="form-field ">{{ form.exercise.label }} {{ form.exercise }}</div>-->
+              <div class="form-field ">Exercice min per week: {{ form.exercise }}</div>
+            </td>
+          </tr>
+
+      </tbody>
+    </table>
+    <input id="submit" style="margin-bottom: 10px;" name="submit" type="submit" onclick="startSpinner()" value="Predict">
+    
+    <br>
+  </form>
+
+  <div class="d-flex justify-content-center">
+    <div id="loader" style="color:black; display: none;" class="spinner-border"></div>
+  </div>
+  <div class="output-container">
+    <center>
+      <div id="output">
+        <h5 id="a">Predicted Heart failure (N=NO ; Y=YES): </h5>
+        <h3 id="b">{{ form.abc }}</h3>
+      </div>
+    </center>
+  </div>
+
+
+
+  <!-- Styles -->
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+</style>
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.PieChart);
+chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+chart.data = [
+  {
+    country: "No",
+    value: {{ form.chtrue }}
+
+
+
+  },
+  {
+    country: "Yes",
+    value: {{ form.chfalse }}
+
+
+
+  }
+];
+chart.radius = am4core.percent(70);
+chart.innerRadius = am4core.percent(40);
+chart.startAngle = 180;
+chart.endAngle = 360;  
+
+var series = chart.series.push(new am4charts.PieSeries());
+series.dataFields.value = "value";
+series.dataFields.category = "country";
+
+series.slices.template.cornerRadius = 10;
+series.slices.template.innerCornerRadius = 7;
+series.slices.template.draggable = true;
+series.slices.template.inert = true;
+series.alignLabels = false;
+
+series.hiddenState.properties.startAngle = 90;
+series.hiddenState.properties.endAngle = 90;
+
+chart.legend = new am4charts.Legend();
+
+}); // end am4core.ready()
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>
+  <!--<center>
+    <img src="static/diagram.png" alt="arch-diagram">
+  </center> -->
+  <script>
+window.onload = function exampleFunction() { 
+  // var output = document.getElementById("output");
+  // output.style.display = "none"
+}
+    function startSpinner() {
+      var x = document.getElementById("loader");
+      x.style.display = "block";
+      var output = document.getElementById("output");
+      output.style.display = "none"
+      setTimeout(function () {
+        var y = document.getElementById("output");
+        var x = document.getElementById("loader");
+        var a = document.getElementById("a");
+        var b = document.getElementById("b");
+        x.style.display = "none";
+        y.style.display = "block"
+        a.style.display = "block"
+        b.style.display = "block"
+      }, 3000);
+
+    }
+  </script>
+
+</body>
+
+</html>
